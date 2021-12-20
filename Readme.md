@@ -1,4 +1,4 @@
-#Koombea Testing Challenge: Conversor De Unidades App
+# Koombea Testing Challenge: Conversor De Unidades App
 This project was designed based on Screenplay Pattern, using Serenity BDD and Cucumber as main testing framework, the language used is Java and the main library used is Appium to perform all the tests on mobile application.
 
 There are 2 scenarios, one runs lenght conversions, and other runs speed conversiones.
