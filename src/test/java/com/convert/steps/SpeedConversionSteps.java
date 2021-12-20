@@ -1,7 +1,8 @@
 package com.convert.steps;
 
+import com.convert.tasks.EnterValueWithButton;
 import com.convert.tasks.SelectLenghtConversion;
-import com.convert.tasks.SelectSpeed;
+import com.convert.tasks.SelectOption;
 import com.convert.ui.CalculatorHome;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -26,15 +27,13 @@ public class SpeedConversionSteps {
     }
     @When("she enters the value {string} to convert speed from {string} to {string}")
     public void sheEntersTheValueToConvertSpeedFromTo(String value, String vLeft, String vRight) {
+
+
         theActorInTheSpotlight().attemptsTo(
-                new SelectSpeed("Velocidad"),
+                new SelectOption("Velocidad"),
                 new SelectLenghtConversion(vLeft, vRight),
                 Click.on(CalculatorHome.BTN_C),
-                Click.on(CalculatorHome.BTN_1),
-                Click.on(CalculatorHome.BTN_0),
-                Click.on(CalculatorHome.BTN_2)
-
-
+                new EnterValueWithButton(value)
         );
     }
 

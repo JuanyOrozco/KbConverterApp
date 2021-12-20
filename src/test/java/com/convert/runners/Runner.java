@@ -14,14 +14,14 @@ import java.io.IOException;
 @CucumberOptions(
         glue = "com.convert.steps",
         features = "src/test/resources/features",
-        tags = "@Smoke")
+        tags = "@All")
 
 public class Runner {
 
     static AppiumDriverLocalService appiumService = null;
 
     @BeforeClass
-    public static void startAppiumServer() throws IOException {
+    public static void startAppiumServer() {
         appiumService = AppiumDriverLocalService.buildDefaultService();
         appiumService.start();
     }

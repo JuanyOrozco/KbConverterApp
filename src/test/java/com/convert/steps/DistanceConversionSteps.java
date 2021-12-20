@@ -1,5 +1,6 @@
 package com.convert.steps;
 
+import com.convert.tasks.EnterValueWithButton;
 import com.convert.tasks.SelectOption;
 import com.convert.tasks.SelectLenghtConversion;
 import com.convert.ui.CalculatorHome;
@@ -9,7 +10,6 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.abilities.BrowseTheWeb;
-import net.serenitybdd.screenplay.actions.Click;
 import net.serenitybdd.screenplay.actors.OnStage;
 import net.serenitybdd.screenplay.actors.OnlineCast;
 import net.serenitybdd.screenplay.ensure.Ensure;
@@ -35,15 +35,12 @@ public class DistanceConversionSteps {
         theActorCalled("Juana").can(BrowseTheWeb.with(driver));
     }
 
-    @When("she enters the value {string} to convert from {string} to {string}")
-    public void sheEntersTheValueToConvertFromTo(String value, String valueLeft, String valueRight) {
+    @When("she enters the value {string} to convert {string} from {string} to {string}")
+    public void sheEntersTheValueToConvertFromTo(String value, String type, String valueLeft, String valueRight) {
         theActorInTheSpotlight().attemptsTo(
-                new SelectOption("Longitud"),
+                new SelectOption(type),
                 new SelectLenghtConversion(valueLeft, valueRight),
-                Click.on(CalculatorHome.BTN_C),
-                Click.on(CalculatorHome.BTN_1),
-                Click.on(CalculatorHome.BTN_2),
-                Click.on(CalculatorHome.BTN_7)
+               new EnterValueWithButton(value)
         );
 
     }
@@ -53,11 +50,6 @@ public class DistanceConversionSteps {
         theActorInTheSpotlight().attemptsTo(
                         Ensure.that(CalculatorHome.TXT_VALUE).hasText(expectedValue)
         );
-    }
-
-    @After
-    public void closeDriver(){
-        driver.quit();
     }
 
 }
